@@ -1,6 +1,11 @@
 package learn
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"time"
+)
 
 type Books struct {
 	title   string
@@ -100,4 +105,11 @@ func Main() {
 	//	print()
 	//}
 
+	var file, _ = os.OpenFile("D:\\go\\poj\\src\\go_code\\First\\learn\\hg.text", os.O_RDWR|os.O_CREATE, 0775)
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+	file.WriteString(time.Now().Local().String() + "\n")
+	defer file.Close()
 }
