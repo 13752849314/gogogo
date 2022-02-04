@@ -110,6 +110,9 @@ func Main() {
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
-	file.WriteString(time.Now().Local().String() + "\n")
+	_, err := file.WriteString(time.Now().Local().String() + "\n")
+	if err != nil {
+		return
+	}
 	defer file.Close()
 }
